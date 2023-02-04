@@ -1,0 +1,948 @@
+# connect 4 in python
+# created by ayan masud (grade 6-7)
+
+import time
+import sys
+
+player1 = input("Player 1: ")
+player2 = input("Player 2: ")
+for i in range(50):
+    print("")
+
+player1_color = "\033[94m0\033[0m"
+player2_color = "\033[91m0\033[0m"
+
+a = " "
+a1 = " "
+a2 = " "
+a3 = " "
+a4 = " "
+a5 = " "
+b = " "
+b1 = " "
+b2 = " "
+b3 = " "
+b4 = " "
+b5 = " "
+c = " "
+c1 = " "
+c2 = " "
+c3 = " "
+c4 = " "
+c5 = " "
+d = " "
+d1 = " "
+d2 = " "
+d3 = " "
+d4 = " "
+d5 = " "
+e = " "
+e1 = " "
+e2 = " "
+e3 = " "
+e4 = " "
+e5 = " "
+f = " "
+f1 = " "
+f2 = " "
+f3 = " "
+f4 = " "
+f5 = " "
+g = " "
+g1 = " "
+g2 = " "
+g3 = " "
+g4 = " "
+g5 = " "
+
+def printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g):
+    print(f'''
+   1     2     3     4     5     6     7
+|-----|-----|-----|-----|-----|-----|-----|
+|  {a}  |  {b}  |  {c}  |  {d}  |  {e}  |  {f}  |  {g}  |
+|-----|-----|-----|-----|-----|-----|-----|
+|  {a1}  |  {b1}  |  {c1}  |  {d1}  |  {e1}  |  {f1}  |  {g1}  |
+|-----|-----|-----|-----|-----|-----|-----|
+|  {a2}  |  {b2}  |  {c2}  |  {d2}  |  {e2}  |  {f2}  |  {g2}  |
+|-----|-----|-----|-----|-----|-----|-----|
+|  {a3}  |  {b3}  |  {c3}  |  {d3}  |  {e3}  |  {f3}  |  {g3}  |
+|-----|-----|-----|-----|-----|-----|-----|
+|  {a4}  |  {b4}  |  {c4}  |  {d4}  |  {e4}  |  {f4}  |  {g4}  |
+|-----|-----|-----|-----|-----|-----|-----|
+|  {a5}  |  {b5}  |  {c5}  |  {d5}  |  {e5}  |  {f5}  |  {g5}  |
+|-----|-----|-----|-----|-----|-----|-----|
+''')
+
+def p1ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g):
+    ask1 = int(input(f"{player1}, choose a column to drop the disk: "))
+    if ask1 == 1:
+        if a5 == " ":
+            a5 = player1_color
+            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+        if a5 == player1_color or player2_color:
+            if a4 == " ":
+                a4 = player1_color
+                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+            if a4 == player1_color or player2_color:
+                if a3 == " ":
+                    a3 = player1_color
+                    printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                if a3 == player1_color or player2_color:
+                    if a2 == " ":
+                        a2 = player1_color
+                        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                    if a2 == player1_color or player2_color:
+                        if a1 == " ":
+                            a1 = player1_color
+                            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                        if a1 == player1_color or player2_color:
+                            if a == " ":
+                                a = player1_color
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                            if a == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+    if ask1 == 2:
+        if b5 == " ":
+            b5 = player1_color
+            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+        if b5 == player1_color or player2_color:
+            if b4 == " ":
+                b4 = player1_color
+                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+            if b4 == player1_color or player2_color:
+                if b3 == " ":
+                    b3 = player1_color
+                    printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                if b3 == player1_color or player2_color:
+                    if b2 == " ":
+                        b2 = player1_color
+                        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                    if b2 == player1_color or player2_color:
+                        if b1 == " ":
+                            b1 = player1_color
+                            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                        if b1 == player1_color or player2_color:
+                            if b == " ":
+                                b = player1_color
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                            if b == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+    if ask1 == 3:
+        if c5 == " ":
+            c5 = player1_color
+            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+        if c5 == player1_color or player2_color:
+            if c4 == " ":
+                c4 = player1_color
+                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+            if c4 == player1_color or player2_color:
+                if c3 == " ":
+                    c3 = player1_color
+                    printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                if c3 == player1_color or player2_color:
+                    if c2 == " ":
+                        c2 = player1_color
+                        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                    if c2 == player1_color or player2_color:
+                        if c1 == " ":
+                            c1 = player1_color
+                            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                        if c1 == player1_color or player2_color:
+                            if c == " ":
+                                c = player1_color
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                            if c == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+    if ask1 == 4:
+        if d5 == " ":
+            d5 = player1_color
+            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+        if d5 == player1_color or player2_color:
+            if d4 == " ":
+                d4 = player1_color
+                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+            if d4 == player1_color or player2_color:
+                if d3 == " ":
+                    d3 = player1_color
+                    printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                if d3 == player1_color or player2_color:
+                    if d2 == " ":
+                        d2 = player1_color
+                        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                    if d2 == player1_color or player2_color:
+                        if d1 == " ":
+                            d1 = player1_color
+                            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                        if d1 == player1_color or player2_color:
+                            if d == " ":
+                                d = player1_color
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                            if d == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+    if ask1 == 5:
+        if e5 == " ":
+            e5 = player1_color
+            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+        if e5 == player1_color or player2_color:
+            if e4 == " ":
+                e4 = player1_color
+                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+            if e4 == player1_color or player2_color:
+                if e3 == " ":
+                    e3 = player1_color
+                    printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                if e3 == player1_color or player2_color:
+                    if e2 == " ":
+                        e2 = player1_color
+                        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                    if e2 == player1_color or player2_color:
+                        if e1 == " ":
+                            e1 = player1_color
+                            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                        if e1 == player1_color or player2_color:
+                            if e == " ":
+                                e = player1_color
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                            if e == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+    if ask1 == 6:
+        if f5 == " ":
+            f5 = player1_color
+            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+        if f5 == player1_color or player2_color:
+            if f4 == " ":
+                f4 = player1_color
+                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+            if f4 == player1_color or player2_color:
+                if f3 == " ":
+                    f3 = player1_color
+                    printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                if f3 == player1_color or player2_color:
+                    if f2 == " ":
+                        f2 = player1_color
+                        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                    if f2 == player1_color or player2_color:
+                        if f1 == " ":
+                            f1 = player1_color
+                            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                        if f1 == player1_color or player2_color:
+                            if f == " ":
+                                f = player1_color
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                            if f == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+    if ask1 == 7:
+        if g5 == " ":
+            g5 = player1_color
+            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+        if g5 == player1_color or player2_color:
+            if g4 == " ":
+                g4 = player1_color
+                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+            if g4 == player1_color or player2_color:
+                if g3 == " ":
+                    g3 = player1_color
+                    printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                if g3 == player1_color or player2_color:
+                    if g2 == " ":
+                        g2 = player1_color
+                        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                    if g2 == player1_color or player2_color:
+                        if g1 == " ":
+                            g1 = player1_color
+                            printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                        if g1 == player1_color or player2_color:
+                            if g == " ":
+                                g = player1_color
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+                            if g == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                                sys.settrace(p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g))
+
+def p2ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g):
+    if a5 == player1_color and a4 == player1_color and a3 == player1_color and a2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b5 == player1_color and b4 == player1_color and b3 == player1_color and b2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c5 == player1_color and c4 == player1_color and c3 == player1_color and c2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d5 == player1_color and d4 == player1_color and d3 == player1_color and d2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if e5 == player1_color and e4 == player1_color and e3 == player1_color and e2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if f5 == player1_color and f4 == player1_color and f3 == player1_color and f2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if g5 == player1_color and g4 == player1_color and g3 == player1_color and g2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a4 == player1_color and a3 == player1_color and a2 == player1_color and a1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b4 == player1_color and b3 == player1_color and b2 == player1_color and b1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c4 == player1_color and c3 == player1_color and c2 == player1_color and c1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d4 == player1_color and d3 == player1_color and d2 == player1_color and d1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if e4 == player1_color and e3 == player1_color and e2 == player1_color and e1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if f4 == player1_color and f3 == player1_color and f2 == player1_color and f1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if g4 == player1_color and g3 == player1_color and g2 == player1_color and g1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a3 == player1_color and a2 == player1_color and a1 == player1_color and a == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b3 == player1_color and b2 == player1_color and b1 == player1_color and b == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c3 == player1_color and c2 == player1_color and c1 == player1_color and c == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d3 == player1_color and d2 == player1_color and d1 == player1_color and d == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if e3 == player1_color and e2 == player1_color and e1 == player1_color and e == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if f3 == player1_color and f2 == player1_color and f1 == player1_color and f == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if g3 == player1_color and g2 == player1_color and g1 == player1_color and g == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a5 == player1_color and b4 == player1_color and c3 == player1_color and d2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b5 == player1_color and c4 == player1_color and d3 == player1_color and e2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c5 == player1_color and d4 == player1_color and e3 == player1_color and f2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d5 == player1_color and e4 == player1_color and f3 == player1_color and g2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a4 == player1_color and b3 == player1_color and c2 == player1_color and d1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b4 == player1_color and c3 == player1_color and d2 == player1_color and e1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c4 == player1_color and d3 == player1_color and e2 == player1_color and f1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d4 == player1_color and e3 == player1_color and f2 == player1_color and g1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a3 == player1_color and b2 == player1_color and c1 == player1_color and d == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b3 == player1_color and c2 == player1_color and d1 == player1_color and e == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c3 == player1_color and d2 == player1_color and e1 == player1_color and f == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d3 == player1_color and e2 == player1_color and f1 == player1_color and g == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a2 == player1_color and b3 == player1_color and c4 == player1_color and d5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b2 == player1_color and c3 == player1_color and d4 == player1_color and e5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c2 == player1_color and d3 == player1_color and e4 == player1_color and f5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d2 == player1_color and e3 == player1_color and f4 == player1_color and g5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a1 == player1_color and b2 == player1_color and c3 == player1_color and d4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b1 == player1_color and c2 == player1_color and d3 == player1_color and e4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c1 == player1_color and d2 == player1_color and e3 == player1_color and f4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d1 == player1_color and e2 == player1_color and f3 == player1_color and g4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a == player1_color and b1 == player1_color and c2 == player1_color and d3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b == player1_color and c1 == player1_color and d2 == player1_color and e3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c == player1_color and d1 == player1_color and e2 == player1_color and f3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d == player1_color and e1 == player1_color and f2 == player1_color and g3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a5 == player1_color and b5 == player1_color and c5 == player1_color and d5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b5 == player1_color and c5 == player1_color and d5 == player1_color and e5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c5 == player1_color and d5 == player1_color and e5 == player1_color and f5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d5 == player1_color and e5 == player1_color and f5 == player1_color and g5 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a4 == player1_color and b4 == player1_color and c4 == player1_color and d4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b4 == player1_color and c4 == player1_color and d4 == player1_color and e4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c4 == player1_color and d4 == player1_color and e4 == player1_color and f4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d4 == player1_color and e4 == player1_color and f4 == player1_color and g4 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a3 == player1_color and b3 == player1_color and c3 == player1_color and d3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b3 == player1_color and c3 == player1_color and d3 == player1_color and e3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c3 == player1_color and d3 == player1_color and e3 == player1_color and f3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d3 == player1_color and e3 == player1_color and f3 == player1_color and g3 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a2 == player1_color and b2 == player1_color and c2 == player1_color and d2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b2 == player1_color and c2 == player1_color and d2 == player1_color and e2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c2 == player1_color and d2 == player1_color and e2 == player1_color and f2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d2 == player1_color and e2 == player1_color and f2 == player1_color and g2 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a1 == player1_color and b1 == player1_color and c1 == player1_color and d1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b1 == player1_color and c1 == player1_color and d1 == player1_color and e1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c1 == player1_color and d1 == player1_color and e1 == player1_color and f1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d1 == player1_color and e1 == player1_color and f1 == player1_color and g1 == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if a == player1_color and b == player1_color and c == player1_color and d == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if b == player1_color and c == player1_color and d == player1_color and e == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if c == player1_color and d == player1_color and e == player1_color and f == player1_color:
+        print(f"{player1} wins!")
+        exit()
+    if d == player1_color and e == player1_color and f == player1_color and g == player1_color:
+        print(f"{player1} wins!")
+        exit()
+
+    ask2 = int(input(f"{player2}, choose a column to drop the disk: "))
+    if ask2 == 1:
+        if a5 == " ":
+            a5 = player2_color
+            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        if a5 == player1_color or player2_color:
+            if a4 == " ":
+                a4 = player2_color
+                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            if a4 == player1_color or player2_color:
+                if a3 == " ":
+                    a3 = player2_color
+                    gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                if a3 == player1_color or player2_color:
+                    if a2 == " ":
+                        a2 = player2_color
+                        gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    if a2 == player1_color or player2_color:
+                        if a1 == " ":
+                            a1 = player2_color
+                            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        if a1 == player1_color or player2_color:
+                            if a == " ":
+                                a = player2_color
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            if a == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+    if ask2 == 2:
+        if b5 == " ":
+            b5 = player2_color
+            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        if b5 == player1_color or player2_color:
+            if b4 == " ":
+                b4 = player2_color
+                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            if b4 == player1_color or player2_color:
+                if b3 == " ":
+                    b3 = player2_color
+                    gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                if b3 == player1_color or player2_color:
+                    if b2 == " ":
+                        b2 = player2_color
+                        gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    if b2 == player1_color or player2_color:
+                        if b1 == " ":
+                            b1 = player2_color
+                            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        if b1 == player1_color or player2_color:
+                            if b == " ":
+                                b = player2_color
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            if b == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+    if ask2 == 3:
+        if c5 == " ":
+            c5 = player2_color
+            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        if c5 == player1_color or player2_color:
+            if c4 == " ":
+                c4 = player2_color
+                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            if c4 == player1_color or player2_color:
+                if c3 == " ":
+                    c3 = player2_color
+                    gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                if c3 == player1_color or player2_color:
+                    if c2 == " ":
+                        c2 = player2_color
+                        gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    if c2 == player1_color or player2_color:
+                        if c1 == " ":
+                            c1 = player2_color
+                            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        if c1 == player1_color or player2_color:
+                            if c == " ":
+                                c = player2_color
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            if c == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+    if ask2 == 4:
+        if d5 == " ":
+            d5 = player2_color
+            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        if d5 == player1_color or player2_color:
+            if d4 == " ":
+                d4 = player2_color
+                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            if d4 == player1_color or player2_color:
+                if d3 == " ":
+                    d3 = player2_color
+                    gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                if d3 == player1_color or player2_color:
+                    if d2 == " ":
+                        d2 = player2_color
+                        gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    if d2 == player1_color or player2_color:
+                        if d1 == " ":
+                            d1 = player2_color
+                            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        if d1 == player1_color or player2_color:
+                            if d == " ":
+                                d = player2_color
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            if d == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+    if ask2 == 5:
+        if e5 == " ":
+            e5 = player2_color
+            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        if e5 == player1_color or player2_color:
+            if e4 == " ":
+                e4 = player2_color
+                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            if e4 == player1_color or player2_color:
+                if e3 == " ":
+                    e3 = player2_color
+                    gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                if e3 == player1_color or player2_color:
+                    if e2 == " ":
+                        e2 = player2_color
+                        gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    if e2 == player1_color or player2_color:
+                        if e1 == " ":
+                            e1 = player2_color
+                            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        if e1 == player1_color or player2_color:
+                            if e == " ":
+                                e = player2_color
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            if e == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+    if ask2 == 6:
+        if f5 == " ":
+            f5 = player2_color
+            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        if f5 == player1_color or player2_color:
+            if f4 == " ":
+                f4 = player2_color
+                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            if f4 == player1_color or player2_color:
+                if f3 == " ":
+                    f3 = player2_color
+                    gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                if f3 == player1_color or player2_color:
+                    if f2 == " ":
+                        f2 = player2_color
+                        gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    if f2 == player1_color or player2_color:
+                        if f1 == " ":
+                            f1 = player2_color
+                            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        if f1 == player1_color or player2_color:
+                            if f == " ":
+                                f = player2_color
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            if f == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+    if ask2 == 7:
+        if g5 == " ":
+            g5 = player2_color
+            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        if g5 == player1_color or player2_color:
+            if g4 == " ":
+                g4 = player2_color
+                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+            if g4 == player1_color or player2_color:
+                if g3 == " ":
+                    g3 = player2_color
+                    gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                if g3 == player1_color or player2_color:
+                    if g2 == " ":
+                        g2 = player2_color
+                        gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                    if g2 == player1_color or player2_color:
+                        if g1 == " ":
+                            g1 = player2_color
+                            gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                        if g1 == player1_color or player2_color:
+                            if g == " ":
+                                g = player2_color
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+                            if g == player1_color or player2_color:
+                                print("That column is already taken... skipped turn. Redirecting in 5 seconds...")
+                                time.sleep(5)
+                                gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+
+def gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g):
+    while True:
+        for i in range(50):
+            print("")
+        printBoard(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+
+        if a5 == player2_color and a4 == player2_color and a3 == player2_color and a2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b5 == player2_color and b4 == player2_color and b3 == player2_color and b2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c5 == player2_color and c4 == player2_color and c3 == player2_color and c2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d5 == player2_color and d4 == player2_color and d3 == player2_color and d2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if e5 == player2_color and e4 == player2_color and e3 == player2_color and e2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if f5 == player2_color and f4 == player2_color and f3 == player2_color and f2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if g5 == player2_color and g4 == player2_color and g3 == player2_color and g2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a4 == player2_color and a3 == player2_color and a2 == player2_color and a1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b4 == player2_color and b3 == player2_color and b2 == player2_color and b1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c4 == player2_color and c3 == player2_color and c2 == player2_color and c1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d4 == player2_color and d3 == player2_color and d2 == player2_color and d1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if e4 == player2_color and e3 == player2_color and e2 == player2_color and e1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if f4 == player2_color and f3 == player2_color and f2 == player2_color and f1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if g4 == player2_color and g3 == player2_color and g2 == player2_color and g1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a3 == player2_color and a2 == player2_color and a1 == player2_color and a == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b3 == player2_color and b2 == player2_color and b1 == player2_color and b == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c3 == player2_color and c2 == player2_color and c1 == player2_color and c == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d3 == player2_color and d2 == player2_color and d1 == player2_color and d == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if e3 == player2_color and e2 == player2_color and e1 == player2_color and e == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if f3 == player2_color and f2 == player2_color and f1 == player2_color and f == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if g3 == player2_color and g2 == player2_color and g1 == player2_color and g == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a5 == player2_color and b4 == player2_color and c3 == player2_color and d2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b5 == player2_color and c4 == player2_color and d3 == player2_color and e2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c5 == player2_color and d4 == player2_color and e3 == player2_color and f2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d5 == player2_color and e4 == player2_color and f3 == player2_color and g2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a4 == player2_color and b3 == player2_color and c2 == player2_color and d1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b4 == player2_color and c3 == player2_color and d2 == player2_color and e1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c4 == player2_color and d3 == player2_color and e2 == player2_color and f1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d4 == player2_color and e3 == player2_color and f2 == player2_color and g1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a3 == player2_color and b2 == player2_color and c1 == player2_color and d == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b3 == player2_color and c2 == player2_color and d1 == player2_color and e == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c3 == player2_color and d2 == player2_color and e1 == player2_color and f == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d3 == player2_color and e2 == player2_color and f1 == player2_color and g == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a2 == player2_color and b3 == player2_color and c4 == player2_color and d5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b2 == player2_color and c3 == player2_color and d4 == player2_color and e5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c2 == player2_color and d3 == player2_color and e4 == player2_color and f5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d2 == player2_color and e3 == player2_color and f4 == player2_color and g5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a1 == player2_color and b2 == player2_color and c3 == player2_color and d4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b1 == player2_color and c2 == player2_color and d3 == player2_color and e4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c1 == player2_color and d2 == player2_color and e3 == player2_color and f4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d1 == player2_color and e2 == player2_color and f3 == player2_color and g4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a == player2_color and b1 == player2_color and c2 == player2_color and d3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b == player2_color and c1 == player2_color and d2 == player2_color and e3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c == player2_color and d1 == player2_color and e2 == player2_color and f3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d == player2_color and e1 == player2_color and f2 == player2_color and g3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a5 == player2_color and b5 == player2_color and c5 == player2_color and d5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b5 == player2_color and c5 == player2_color and d5 == player2_color and e5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c5 == player2_color and d5 == player2_color and e5 == player2_color and f5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d5 == player2_color and e5 == player2_color and f5 == player2_color and g5 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a4 == player2_color and b4 == player2_color and c4 == player2_color and d4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b4 == player2_color and c4 == player2_color and d4 == player2_color and e4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c4 == player2_color and d4 == player2_color and e4 == player2_color and f4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d4 == player2_color and e4 == player2_color and f4 == player2_color and g4 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a3 == player2_color and b3 == player2_color and c3 == player2_color and d3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b3 == player2_color and c3 == player2_color and d3 == player2_color and e3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c3 == player2_color and d3 == player2_color and e3 == player2_color and f3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d3 == player2_color and e3 == player2_color and f3 == player2_color and g3 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a2 == player2_color and b2 == player2_color and c2 == player2_color and d2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b2 == player2_color and c2 == player2_color and d2 == player2_color and e2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c2 == player2_color and d2 == player2_color and e2 == player2_color and f2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d2 == player2_color and e2 == player2_color and f2 == player2_color and g2 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a1 == player2_color and b1 == player2_color and c1 == player2_color and d1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b1 == player2_color and c1 == player2_color and d1 == player2_color and e1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c1 == player2_color and d1 == player2_color and e1 == player2_color and f1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d1 == player2_color and e1 == player2_color and f1 == player2_color and g1 == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if a == player2_color and b == player2_color and c == player2_color and d == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if b == player2_color and c == player2_color and d == player2_color and e == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if c == player2_color and d == player2_color and e == player2_color and f == player2_color:
+            print(f"{player2} wins!")
+            exit()
+        if d == player2_color and e == player2_color and f == player2_color and g == player2_color:
+            print(f"{player2} wins!")
+            exit()
+
+        p1ask(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
+        continue
+
+gameLoop(a5, a4, a3, a2, a1, a, b5, b4, b3, b2, b1, b, c5, c4, c3, c2, c1, c, d5, d4, d3, d2, d1, d, e5, e4, e3, e2, e1, e, f5, f4, f3, f2, f1, f, g5, g4, g3, g2, g1, g)
